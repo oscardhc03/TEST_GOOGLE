@@ -1,0 +1,4 @@
+0 Persona
+1 Escaleras
+2 Entorno
+3 Puerta
