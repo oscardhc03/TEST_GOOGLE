@@ -9,13 +9,13 @@ from flask_cors import CORS
 CORS(app)
 
 # Cargar el modelo TFLite
-interpreter = tf.lite.Interpreter(model_path="C:/Users/Oscar/Desktop/server/model.tflite")
+interpreter = tf.lite.Interpreter(model_path="model.tflite")
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
 # Etiquetas de las clases
-with open("C:/Users/Oscar/Desktop/server/labels.txt", "r") as f:
+with open("labels.txt", "r") as f:
     labels = [line.strip() for line in f.readlines()]
 
 predictions_data = {}
@@ -56,4 +56,4 @@ def log_request_info():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
